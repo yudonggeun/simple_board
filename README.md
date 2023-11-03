@@ -1,7 +1,7 @@
 ## GOAL
 * "스파르타 익명 게시판 서버 만들기"
 * Swagger UI를 이용한 API 자동화
-* 
+ 
 
 ## REQUIRE
 - 게시글 작성 기능
@@ -35,3 +35,10 @@
 ## API
 ![api](/dosc/api.png)
 [스프링부트를 가동하고 클릭하면 swagger를 통해서 API를 사용할 수 있습니다.](http://localhost:8080/swagger-ui/index.html)
+
+## ISSUE
+1. [Docker compose 버전 문제](https://github.com/spring-projects/spring-boot/issues/37982)
+ 
+    2.23.0 버전에서 docker compose support에서 실행이 안되는 오류가 발생함.
+    spring team에서 3.1.6 버전에서 이슈를 해결할 것으로 보임.
+
