@@ -7,7 +7,7 @@ import java.util.List;
 public record GetBoardListResponse(
         @Schema(description = "요청한 페이지 index", example = "1")
         long page,
-        @Schema(description = "조회된 게시글 목록 크기", example = "10")
+        @Schema(description = "페이지 크기", example = "10")
         int size,
         @Schema(description = "총 게시글 수", example = "1000")
         long totalElement,

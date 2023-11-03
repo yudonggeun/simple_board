@@ -43,7 +43,7 @@ public class BoardService {
     public GetBoardListResponse getBoardList(Pageable pageable) {
         Page<Long> pages = boardRepository.findList(pageable);
 
-        if (pages.getSize() == 0) throw new NotFoundBoardException();
+        if (pages.isEmpty()) throw new NotFoundBoardException();
 
         return new GetBoardListResponse(
                 pageable.getPageNumber(),
