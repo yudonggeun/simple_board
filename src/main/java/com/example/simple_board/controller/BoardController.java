@@ -16,6 +16,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
@@ -48,7 +49,6 @@ public class BoardController {
     @Parameters({
             @Parameter(name = "size", description = "페이지 사이즈 default : 10", example = "10"),
             @Parameter(name = "page", description = "페이지 인덱스 default : 0", example = "0"),
-            @Parameter(name = "sort", description = "정렬 기준으로 기본 설정은 게시물 생성일이다. default : createdAt", example = "createdAt"),
     })
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "게시글 목록 조회 성공"),
@@ -56,7 +56,7 @@ public class BoardController {
     })
     @GetMapping("/board")
     public GetBoardListResponse getBoardList(@Schema(hidden = true)
-                                                             @PageableDefault(sort = {"createdAt"})
+                                                             @PageableDefault(sort = {"createdAt"}, direction = Sort.Direction.DESC)
                                                              Pageable pageable) {
         return boardService.getBoardList(pageable);
     }
