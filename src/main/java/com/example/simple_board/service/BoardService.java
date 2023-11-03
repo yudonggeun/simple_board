@@ -8,11 +8,11 @@ import com.example.simple_board.common.response.BoardInfoResponse;
 import com.example.simple_board.common.response.GetBoardListResponse;
 import com.example.simple_board.domain.Board;
 import com.example.simple_board.repository.BoardRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
@@ -33,6 +33,7 @@ public class BoardService {
         return BoardInfoResponse.of(board);
     }
 
+    @Transactional(readOnly = true)
     public BoardInfoResponse getBoardInfo(Long id) {
         Board board = boardRepository.findById(id)
                 .orElseThrow(NotFoundBoardException::new);
@@ -40,6 +41,7 @@ public class BoardService {
         return BoardInfoResponse.of(board);
     }
 
+    @Transactional(readOnly = true)
     public GetBoardListResponse getBoardList(Pageable pageable) {
         Page<Long> pages = boardRepository.findList(pageable);
 
@@ -63,15 +65,15 @@ public class BoardService {
         return BoardInfoResponse.of(board);
     }
 
-    private void checkAuth(String boardPassword, String password) {
-        if (!boardPassword.equals(password)) throw new DoesNotHaveAuthException();
-    }
-
     public void delete(Long id, String password) {
         String boardPassword = boardRepository.findPasswordById(id)
                 .orElseThrow(NotFoundBoardException::new);
 
         checkAuth(boardPassword, password);
         boardRepository.deleteById(id);
+    }
+
+    private void checkAuth(String boardPassword, String password) {
+        if (!boardPassword.equals(password)) throw new DoesNotHaveAuthException();
     }
 }
