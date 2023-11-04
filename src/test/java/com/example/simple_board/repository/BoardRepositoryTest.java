@@ -2,14 +2,13 @@ package com.example.simple_board.repository;
 
 import com.example.simple_board.domain.Board;
 import lombok.extern.slf4j.Slf4j;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import reactor.test.StepVerifier;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 
 @Slf4j
@@ -21,7 +20,7 @@ class BoardRepositoryTest {
 
     @DisplayName("R2dbc를 이용한 entity 조회하기")
     @Test
-    void findById() throws InterruptedException {
+    void findById() {
         // given
         boardRepository.save(Board.builder()
                         .author("유동근")
