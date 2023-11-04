@@ -3,6 +3,7 @@ package com.example.simple_board.controller;
 import com.example.simple_board.common.exception.DoesNotHaveAuthException;
 import com.example.simple_board.common.exception.NotFoundBoardException;
 import com.example.simple_board.common.response.FailResponse;
+import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.support.WebExchangeBindException;
 import reactor.core.publisher.Mono;
 
 @RestControllerAdvice
+@Hidden
 public class ExceptionController {
 
     @ExceptionHandler(NotFoundBoardException.class)
