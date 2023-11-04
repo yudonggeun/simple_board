@@ -44,16 +44,18 @@
 
 2. Pageable 파라미터 매핑 실패 오류
 
-    원인 : WebFlux에서는 Pageble 인터페이스를 지원하지 않음.
+    원인 : WebFlux에서는 Pageble 인터페이스를 지원하지 않음. 3.1.5 
 
-    해결법
+    [해결법]()
     1. Pageable 인터페이스 대신 커스텀 Dto 혹은 primitive type 사용하기
     2. Pageable 생성 커스텀 리졸버 만들기
 
 3. R2DBC Pageable 지원하지 않음
 
     원인 : R2DBC에서도 역시 Pageable 지원하지 않는다. 오직 Sort만 지원하고 있다.
-    
+    Spring data R2dbc 첫 페이지 공식 문서에서 일반적인 Spring data 프로젝트에 대한 사항을 설명하는 곳에서 Pageable, Page를 지원하는 것으로 착각을 해서 삽질함.
+    R2dbc만의 문서는 여기를 [참고](https://docs.spring.io/spring-data/r2dbc/docs/current/reference/html/#r2dbc.repositories.queries)
+
     해결 : Pageable을 그대로 사용하지 않고 offset과 size를 추출해서 사용함.
 
 4. Swagger RestControllerAdvice exception handle 로직이 전체 API 문서에 각각 반영되는 현상
@@ -64,4 +66,9 @@
 
     원인 : R2dbc 숙련도 부족
     
-    해결 : Github R2dbc 사용 코드 탐색
+    해결 : Github R2dbc 사용 코드 탐색 [sample](https://github.com/hantsy/spring-r2dbc-sample/blob/master/boot/src/main/resources/application.properties)
+
+6. R2dbc 스키마 자동 생성 지원x
+
+    원인 : JPA hibernate와 다르게 정의된 엔티티 기반으로 ddl을 자동으로 실행하지 않음
+    해결 : schema.sql 작성 후 어플리케이션 가동 후에 ddl 스크립트 실행하도록 설정
