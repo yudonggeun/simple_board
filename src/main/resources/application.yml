@@ -10,10 +10,6 @@ spring:
     username: root
     password: example0000
 
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
-
 springdoc:
   version: "0.1.0"
   default-consumes-media-type: application/json
