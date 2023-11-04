@@ -1,0 +1,20 @@
+spring:
+  docker:
+    compose:
+      enabled: true
+      file: compose.yml
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3307/mydb
+    username: root
+    password: example0000
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+springdoc:
+  version: "0.1.0"
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
