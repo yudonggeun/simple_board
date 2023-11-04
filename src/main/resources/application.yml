@@ -4,11 +4,21 @@ spring:
       enabled: true
       file: compose.yml
 
+  sql:
+    init:
+      schema-locations: classpath*:db/schema.sql
+      mode: always # default? embedded?? always ??? ??
+
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3307/mydb
     username: root
     password: example0000
+
+logging:
+  level:
+    org:
+      springframework:
+        r2dbc: DEBUG
 
 springdoc:
   version: "0.1.0"
