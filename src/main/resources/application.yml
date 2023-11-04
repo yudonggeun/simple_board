@@ -9,8 +9,8 @@ spring:
       schema-locations: classpath*:db/schema.sql
       mode: always # default? embedded?? always ??? ??
 
-  datasource:
-    url: jdbc:mysql://localhost:3307/mydb
+  r2dbc:
+    url: r2dbc:mysql://localhost:3306/mydb
     username: root
     password: example0000
 
