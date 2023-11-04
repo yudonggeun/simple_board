@@ -1,7 +1,7 @@
 ## GOAL
 * "스파르타 익명 게시판 서버 만들기"
 * Swagger UI를 이용한 API 자동화
- 
+* 비동기 서버 만들어보기
 
 ## REQUIRE
 - 게시글 작성 기능
@@ -42,3 +42,26 @@
     2.23.0 버전에서 docker compose support에서 실행이 안되는 오류가 발생함.
     spring team에서 3.1.6 버전에서 이슈를 해결할 것으로 보임.
 
+2. Pageable 파라미터 매핑 실패 오류
+
+    원인 : WebFlux에서는 Pageble 인터페이스를 지원하지 않음.
+
+    해결법
+    1. Pageable 인터페이스 대신 커스텀 Dto 혹은 primitive type 사용하기
+    2. Pageable 생성 커스텀 리졸버 만들기
+
+3. R2DBC Pageable 지원하지 않음
+
+    원인 : R2DBC에서도 역시 Pageable 지원하지 않는다. 오직 Sort만 지원하고 있다.
+    
+    해결 : Pageable을 그대로 사용하지 않고 offset과 size를 추출해서 사용함.
+
+4. Swagger RestControllerAdvice exception handle 로직이 전체 API 문서에 각각 반영되는 현상
+    
+    해결 : @Hidden, @Operation(hidden = true)를 사용하여 의도하지 않은 문서화 제거
+
+5. R2dbc 설정 오류
+
+    원인 : R2dbc 숙련도 부족
+    
+    해결 : Github R2dbc 사용 코드 탐색
