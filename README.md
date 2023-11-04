@@ -46,7 +46,7 @@
 
     원인 : WebFlux에서는 Pageble 인터페이스를 지원하지 않음. 3.1.5 
 
-    [해결법]()
+    [해결법](https://medium.com/@davidpetro/spring-webflux-and-pageable-be55104c234f)
     1. Pageable 인터페이스 대신 커스텀 Dto 혹은 primitive type 사용하기
     2. Pageable 생성 커스텀 리졸버 만들기
 
